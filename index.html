@@ -32,19 +32,22 @@
   .hint{font-size:10px;line-height:1.35;text-align:right}
 }
 @media (max-width:560px){
-  .topbar{padding-bottom:14px}
+  html,body{height:100%;overflow:hidden}
+  .app{height:100svh;min-height:100svh;padding:max(12px,env(safe-area-inset-top)) 14px max(12px,env(safe-area-inset-bottom));grid-template-rows:auto 1fr auto}
+  .topbar{padding-bottom:12px}
   .brand strong{font-size:13px}
-  .main{padding-top:28px}
-  .eyebrow{margin-bottom:16px}
-  .intro h1{font-size:clamp(46px,15vw,68px);margin-bottom:18px}
-  .deck{height:clamp(420px,68vh,540px);min-height:420px}
-  .card{padding:22px 20px}
-  .card h2{font-size:clamp(30px,9vw,46px)}
-  .body{font-size:14px;line-height:1.5}
-  .side{grid-template-columns:1fr;gap:18px}
-  .side-block:last-child{grid-column:auto}
-  .bottom{display:block}
-  .hint{margin-top:10px;text-align:left}
+  .issue{font-size:9px}
+  .main{display:block;height:100%;padding:0}
+  .intro,.side{display:none}
+  .reader{height:100%;min-height:0}
+  .deck{height:100%;min-height:0;width:100%;touch-action:none}
+  .card{padding:24px 20px 22px;box-shadow:none;border-left:0;border-right:0}
+  .card:nth-child(n+2){transform:translateY(10px) scale(.985) rotate(.5deg)}
+  .card:nth-child(n+3){transform:translateY(18px) scale(.97) rotate(1deg)}
+  .card h2{font-size:clamp(34px,10vw,48px)}
+  .body{font-size:15px;line-height:1.5}
+  .bottom{padding-top:10px;border-top:0}
+  .hint{display:none}
 }
 </style>
 </head>
@@ -75,6 +78,6 @@ const deck=document.getElementById('deck'),counter=document.getElementById('coun
 function setVisible(){visible=cards.filter(c=>activeFilter==='all'||c.article===activeFilter); if(index>=visible.length)index=visible.length-1; render()}
 function render(){deck.innerHTML=''; visible.slice(index,index+3).forEach((c,i)=>{const el=document.createElement('article');el.className='card '+(i===0?'current':'');el.dataset.kind=c.kind;el.innerHTML=`<div class="card-tag"><span><i class="dot"></i>${c.label}</span><span>${String(index+i+1).padStart(2,'0')}</span></div><div><h2>${c.title}</h2><div class="body">${c.body}</div></div><div class="foot"><span>Reported by source<br><a class="source" href="${c.url}" target="_blank" rel="noopener">${c.source} ↗</a></span><span>${c.kind==='boundary'?'BOUNDARY':c.kind==='question'?'OPEN THREAD':'CASE NOTE'}</span></div>`;deck.appendChild(el)});counter.textContent=`${String(index+1).padStart(2,'0')} / ${String(visible.length).padStart(2,'0')}`;progress.innerHTML=visible.map((_,i)=>`<span class="bar ${i<=index?'done':''}"></span>`).join('')}
 function move(dir){if(!visible.length)return;if(dir>0&&index<visible.length-1){const current=deck.querySelector('.current');if(current){current.classList.add('out-left');setTimeout(()=>{index++;render()},220)}else{index++;render()}}else if(dir<0&&index>0){index--;render()}}
-document.getElementById('next').onclick=()=>move(1);document.getElementById('prev').onclick=()=>move(-1);document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();move(1)}if(e.key==='ArrowLeft')move(-1)});document.querySelectorAll('.filter button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filter button').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeFilter=b.dataset.filter;index=0;setVisible()});let startX=0,startY=0;deck.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;startY=e.touches[0].clientY},{passive:true});deck.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.2)move(dx<0?1:-1)},{passive:true});setVisible();
+document.getElementById('next').onclick=()=>move(1);document.getElementById('prev').onclick=()=>move(-1);document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();move(1)}if(e.key==='ArrowLeft')move(-1)});document.querySelectorAll('.filter button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filter button').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeFilter=b.dataset.filter;index=0;setVisible()});let startX=0,startY=0;deck.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;startY=e.touches[0].clientY},{passive:true});deck.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;if(Math.max(Math.abs(dx),Math.abs(dy))<40)return;if(Math.abs(dy)>Math.abs(dx)*.75)move(dy<0?1:-1);else move(dx<0?1:-1)},{passive:true});deck.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();move(e.deltaY>0?1:-1)}},{passive:false});setVisible();
 </script>
 </body></html>
