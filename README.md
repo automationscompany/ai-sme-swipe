@@ -13,10 +13,10 @@ The site is publicly hosted by GitHub Pages. You do not need to run anything loc
 
 ## What it contains
 
-- Swipeable cards distilled from the three newest proposal articles
+- Swipeable cards distilled from the eight newest proposal articles
 - Multiple cards per source article
 - Touch, keyboard-arrow, and button navigation
-- Filters for the three current research articles
+- Filters for the current research articles
 - Direct links back to the source articles
 - A cross-case thread tracking automation, human escalation, safety boundaries, and digital-company-twin evidence
 
