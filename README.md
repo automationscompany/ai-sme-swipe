@@ -32,6 +32,10 @@ git push
 
 The workflow will redeploy the live site automatically. Check deployment status in the repository’s **Actions** tab.
 
+### Mandatory mobile regression check
+
+Before publishing each morning update, verify the live reader at 320px, 375px, 390px, and 430px widths. The card must keep a visible right gutter, must not create horizontal page overflow, and must not hide body text or source links. Each source is a three-slide story: horizontal swipes move within the source, dots show the slide, and vertical story movement occurs only from the first or last slide. Every slide should use a fuller paraphrase rather than a headline-only summary and fit in one mobile viewport without an inner scrollbar.
+
 ## Optional local preview
 
 Local hosting is only needed when developing or testing changes before publishing. It runs on the machine where you execute the command; it is not the public site and other people cannot access it unless that machine is separately exposed to the network.
