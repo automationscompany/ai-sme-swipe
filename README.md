@@ -13,7 +13,7 @@ The site is publicly hosted by GitHub Pages. You do not need to run anything loc
 
 ## What it contains
 
-- Swipeable cards distilled from the eight newest proposal articles
+- Swipeable cards distilled from the three newest source articles
 - Multiple cards per source article
 - Touch, keyboard-arrow, and button navigation
 - Filters for the current research articles
