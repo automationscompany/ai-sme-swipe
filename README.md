@@ -34,7 +34,7 @@ The workflow will redeploy the live site automatically. Check deployment status 
 
 ### Mandatory mobile regression check
 
-Before publishing each morning update, verify the live reader at 320px, 375px, 390px, and 430px widths. The card must keep a visible right gutter, must not create horizontal page overflow, and must not hide body text or source links. The reader advances one card per upward swipe and returns one card per downward swipe, with converse vertical animations and a bottom crossed/remaining indicator. Every visible card should use a fuller paraphrase rather than a headline-only summary and fit in one mobile viewport without an inner scrollbar.
+Before publishing each morning update, verify the live reader at 320px, 375px, 390px, and 430px widths. The card must keep a visible right gutter, must not create horizontal page overflow, and must not hide body text or source links. The reader advances one card per upward swipe and returns one card per downward swipe; the card follows the finger during the drag, snaps back below the threshold, and exits with converse vertical animations after the threshold. The bottom indicator must visibly mark completed and current cards and show crossed/remaining counts. Every visible card should use a fuller paraphrase rather than a headline-only summary and fit in one mobile viewport without an inner scrollbar.
 
 ## Optional local preview
 
