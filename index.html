@@ -57,7 +57,7 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}.app,.topbar,.main,.intro,
 </head>
 <body>
 <div class="app">
-<header class="topbar"><div class="brand"><span class="mark"></span><strong>FIELD NOTES</strong></div><div class="issue">AI as subject-matter expert · 17 OCT 2026 · ROUND 18</div></header>
+<header class="topbar"><div class="brand"><span class="mark"></span><strong>FIELD NOTES</strong></div><div class="issue">AI as subject-matter expert · 23 OCT 2026 · ROUND 19</div></header>
 <main class="main">
 <section class="intro"><div><div class="eyebrow">Swipeable research</div><h1>AI, inside the business.</h1></div><div><p>Three latest sources, unpacked into the claims, constraints, and open questions that matter.</p><div class="filter" aria-label="Filter cards"><button class="active" data-filter="all">All</button><button data-filter="governance">Governance</button><button data-filter="deployment">Deployment</button><button data-filter="evaluation">Evaluation</button></div></div></section>
 <section class="reader" aria-label="Swipeable article reader"><div class="deck" id="deck"></div></section>
@@ -67,6 +67,15 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}.app,.topbar,.main,.intro,
 </div>
 <script>
 const cards=[
+{article:'deployment',label:'AI CAFÉ · 01',kind:'case',title:'An AI started a <em>real café.</em>',body:'Andon reports Mona handling permits, suppliers, hiring, menus, and customer communications for a Stockholm café.',source:'Andon Labs · Our AI started a café in Stockholm',url:'https://andonlabs.com/blog/ai-cafe-stockholm'},
+{article:'economics',label:'AI CAFÉ · 02',kind:'signal',title:'The café made <em>44,000 SEK.</em>',body:'Andon reports 44,000 SEK in sales during the first two weeks, including a 9,000 SEK prepaid-coffee deal.',source:'Andon Labs · Our AI started a café in Stockholm',url:'https://andonlabs.com/blog/ai-cafe-stockholm'},
+{article:'oversight',label:'AI CAFÉ · 03',kind:'boundary',title:'Human help crossed the <em>identity boundary.</em>',body:'Mona needed human BankID authentication, physical labor, employment safeguards, and correction after operational mistakes.',source:'Andon Labs · Our AI started a café in Stockholm',url:'https://andonlabs.com/blog/ai-cafe-stockholm'},
+{article:'deployment',label:'ANDON FM · 01',kind:'case',title:'Four AI stations found <em>listeners and sponsors.</em>',body:'Andon reports four AI-run radio stations attracting thousands of listeners and generating about $5,700 in total revenue.',source:'Andon Labs · Andon FM, Six Weeks Later',url:'https://andonlabs.com/blog/andon-fm-2'},
+{article:'economics',label:'ANDON FM · 02',kind:'signal',title:'One DJ led on <em>attention and revenue.</em>',body:'Andon reports DJ Claude at 11,200 listening hours and $2,662 revenue, ahead of the other stations.',source:'Andon Labs · Andon FM, Six Weeks Later',url:'https://andonlabs.com/blog/andon-fm-2'},
+{article:'oversight',label:'ANDON FM · 03',kind:'boundary',title:'The agents mostly ran <em>stations, not companies.</em>',body:'Andon reports the DJs spent income immediately and largely ignored growth, savings, staffing, and broader business decisions.',source:'Andon Labs · Andon FM, Six Weeks Later',url:'https://andonlabs.com/blog/andon-fm-2'},
+{article:'deployment',label:'ANDON MARKET · 01',kind:'case',title:'An AI received a <em>three-year retail lease.</em>',body:'Andon gave Luna a San Francisco store, corporate card, phone, email, internet access, and security cameras.',source:'Andon Labs · AI retail lease experiment',url:'https://andonlabs.com/blog/andon-market-launch'},
+{article:'deployment',label:'ANDON MARKET · 02',kind:'signal',title:'Luna hired <em>two employees.</em>',body:'Andon reports Luna chose products, prices, hours, branding, and marketing, then hired two full-time retail employees.',source:'Andon Labs · AI retail lease experiment',url:'https://andonlabs.com/blog/andon-market-launch'},
+{article:'oversight',label:'ANDON MARKET · 03',kind:'boundary',title:'The case lacks <em>financial results.</em>',body:'The source documents a controlled experiment with human employment protections, not independent evidence of revenue or profitability.',source:'Andon Labs · AI retail lease experiment',url:'https://andonlabs.com/blog/andon-market-launch'},
 {article:'deployment',label:'PION · 01',kind:'case',title:'Pion runs <em>persistent businesses.</em>',body:'Andon reports Pion running vending machines, a retail store, a café, radio stations, and internal software businesses.',source:'Andon Labs · Pion',url:'https://andonlabs.com/pion'},
 {article:'economics',label:'PION · 02',kind:'signal',title:'The platform supplies <em>operating primitives.</em>',body:'Pion gives long-running agents email, phone, banking, browsers, secure terminals, and an overseeing manager agent.',source:'Andon Labs · Pion',url:'https://andonlabs.com/pion'},
 {article:'oversight',label:'PION · 03',kind:'boundary',title:'Profitability remains <em>an experiment.</em>',body:'Andon describes Pion businesses as experiments and says monitoring, failure modes, and profitability thresholds remain open questions.',source:'Andon Labs · Pion',url:'https://andonlabs.com/pion'},
@@ -167,7 +176,6 @@ const cards=[
 {article:'evaluation',label:'WEALTHFRONT · 02',kind:'signal',title:'Models become useful through <em>what-if design.</em>',body:'Users change savings, spending, retirement age, housing, or other assumptions and immediately see how the projected future changes.',source:'Wealthfront · Introducing Path',url:'https://www.wealthfront.com/blog/introducing-path/'},
 {article:'governance',label:'WEALTHFRONT · 03',kind:'boundary',title:'Trust depends on <em>state synchronization.</em>',body:'Wealthfront’s transfer flows use backend-driven steps, reactive UI state, review screens, and confirmation so the approved action matches the executed action.',source:'Wealthfront Engineering · Unifying Transfer Flows',url:'https://eng.wealthfront.com/2023/10/10/unifying-wealthfronts-transfer-flows-an-ios-engineering-journey'},
 ];
-cards.length=9;
 let activeFilter='all', storyIndex=0, slideIndex=0, stories=[], direction='next';
 const deck=document.getElementById('deck'),counter=document.getElementById('counter'),progress=document.getElementById('progress');
 function makeStories(){const all=[];for(let i=0;i<cards.length;i+=3)all.push(cards.slice(i,i+3));stories=activeFilter==='all'?all:all.filter(story=>story.some(c=>c.article===activeFilter))}
